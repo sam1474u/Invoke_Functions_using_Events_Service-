@@ -83,7 +83,7 @@ Invoke Functions using Events Service
 
 ## STEP 5: Create an Autonomous Data Warehouse
   The function accesses the Autonomous Database using SODA (Simple Oracle Document Access) for simplicity. You can use the other type of access by modifying the function.
- <p><figure><img src= "https://user-images.githubusercontent.com/42166489/108221668-0df5a900-715e-11eb-86c6-70ab3afbd524.png></img></figure></p>
+ <p><figure><img src= "https://user-images.githubusercontent.com/42166489/108230427-c889a980-7166-11eb-80a7-fd0c57e4e15a.png"></img></figure></p>
 
   1.	Open the navigation menu, select Autonomous Data Warehouse.
   2.	Click Create Autonomous Database.
@@ -94,77 +94,86 @@ Invoke Functions using Events Service
   7.	Enter the admin password.
   8.	Select BYOL
   9.	Click Create Autonomous Database.
+  <p><figure><img src= "https://user-images.githubusercontent.com/42166489/108230538-e6efa500-7166-11eb-98d1-499ed8b4de13.png"></img></figure></p>
 
   Wait for OCI to provision the Autonomous Database, and then click the Service Console button.
- <p><figure><img src= "https://user-images.githubusercontent.com/42166489/108221718-1bab2e80-715e-11eb-9e70-14b3d43028e1.png></img></figure></p>
+   <p><figure><img src= "https://user-images.githubusercontent.com/42166489/108231028-5d8ca280-7167-11eb-9eb5-b8895ebe3254.png"></img></figure></p>
 
 
   1.	Click Development from the sidebar. 
-  2.	Under RESTful Services and SODA, click Copy URL.
+  2.	Under RESTful Services and SODA, click Copy URL.  <br/><p><figure><img src="https://user-images.githubusercontent.com/42166489/108231160-7c8b3480-7167-11eb-9856-66fdccc4c7d9.png"></img></figure></p>
+
   3.	From your terminal (or Cloud Shell), create the collection called regionsnumbers by running the command below. Make sure you replace the <ORDS_BASE_URL> with the value you copied in the previous step, and <DB-PASSWORD> with the admin password you set when you created the Autonomous Database.
-  4.	Copyexport ORDS_BASE_URL=<ORDS_BASE_URL>
+  4.	export ORDS_BASE_URL=<ORDS_BASE_URL>
   5.	curl -X PUT -u 'ADMIN:<DB-PASSWORD>' -H "Content-Type: application/json" $ORDS_BASE_URL/admin/soda/latest/regionsnumbers
   6.	To double check collection was created, you can list all collections. The output should look similar as below:
   7.	$ curl -u 'ADMIN:<DB-password>' -H "Content-Type: application/json" $ORDS_BASE_URL/admin/soda/latest/
+  <p><figure><img src="https://user-images.githubusercontent.com/42166489/108231382-b6f4d180-7167-11eb-82f9-2a274bd64866.png"></img></figure></p>
+
   
-  
-##STEP 6: Deploy the function
+## STEP 6: Deploy the function
+
   In this step, you will clone the functions source code repository and use the fn deploy command to build the Docker image, push the image to OCIR, and deploy the function to   Oracle Functions in your application.
   1.	From the Console UI, open the Cloud Shell.
   2.	Clone the Functions source code repository:
-  git clone https://github.com/oracle/oracle-functions-samples.git
+        git clone https://github.com/oracle/oracle-functions-samples.git
+        ![image](https://user-images.githubusercontent.com/42166489/108231817-2a96de80-7168-11eb-8e5f-d9afa3c8d0cc.png)
 
   3.	Go to the samples/oci-load-file-into-adw-python folder
   cd oracle-functions-samples/samples/oci-load-file-into-adw-python
   4.	Deploy the function to the etl-app:
-  fn -v deploy --app etl-app
+       fn -v deploy --app etl-app
+      ![image](https://user-images.githubusercontent.com/42166489/108231857-34204680-7168-11eb-98f2-50539e9c6ae5.png)
 
  
 
-  After you deploy the function, you need to set function configuration values so the function knows how to connect to the Autonomous Database.
-  5.	Using the Fn CLI, set the following configuration values. Make sure you replace the [ORDS_BASE_URL] and [DB_PASSWORD] with your values:
-  fn config function etl-app oci-load-file-into-adw-python ords-base-url [ORDS_BASE_URL]
-  fn config function etl-app oci-load-file-into-adw-python db-schema admin
-  fn config function etl-app oci-load-file-into-adw-python db-user admin
-  fn config function etl-app oci-load-file-into-adw-python dbpwd-cipher [DB-PASSWORD]
-  fn config function etl-app oci-load-file-into-adw-python input-bucket input-bucket
-  fn config function etl-app oci-load-file-into-adw-python processed-bucket processed-bucket
+    After you deploy the function, you need to set function configuration values so the function knows how to connect to the Autonomous Database.
+        Using the Fn CLI, set the following configuration values. Make sure you replace the [ORDS_BASE_URL] and [DB_PASSWORD] with your values:
+        fn config function etl-app oci-load-file-into-adw-python ords-base-url [ORDS_BASE_URL]
+        fn config function etl-app oci-load-file-into-adw-python db-schema admin
+        fn config function etl-app oci-load-file-into-adw-python db-user admin
+        fn config function etl-app oci-load-file-into-adw-python dbpwd-cipher [DB-PASSWORD]
+        fn config function etl-app oci-load-file-into-adw-python input-bucket input-bucket
+        fn config function etl-app oci-load-file-into-adw-python processed-bucket processed-bucket
+      ![image](https://user-images.githubusercontent.com/42166489/108232147-79dd0f00-7168-11eb-91a9-8411c43a2205.png)
 
  
 
-##STEP 7: Create an Event rule
+## STEP 7: Create an Event rule
   In this step, you will configure a Cloud Event to trigger the function when you drop the files into the input-bucket.
   1.	From Console UI, open navigation and select Application Integration and click Events Service.
-
+      ![image](https://user-images.githubusercontent.com/42166489/108232201-87929480-7168-11eb-99a3-3cb7cccde652.png)
   2.	Select your development compartment from the Compartment list.
   3.	Click Create Rule.
   4.	For display name, enter load_CSV_into_ADW.
   5.	For description, enter Load CSV file into ADW.
   6.	Create three rules. You can click Another Condition to add more conditions:
-  Condition	Service/Attribute Name	Event Type/Attribute Values
-  Event Type	Object Storage	Object - Create
-  Attribute	compartmentName	
-  Attribute	bucketName	input-bucket
+        ![image](https://user-images.githubusercontent.com/42166489/108232396-bd377d80-7168-11eb-97a3-bdd69e6c60e3.png)
 
  
   7.	Under Actions, select Functions:
-  o	For function compartment, select your development compartment.
-  o	For function application, select etl-app.
-  o	For function, select oci-load-file-into-adw-python.
+      o	For function compartment, select your development compartment.
+      o	For function application, select etl-app.
+      o	For function, select oci-load-file-into-adw-python.
   8.	Click Create Rule.
-  STEP 8: Test the function
+  ![image](https://user-images.githubusercontent.com/42166489/108232480-d7715b80-7168-11eb-89bc-31e93df48700.png)
+
+  ## STEP 8: Test the function
+  
   To test the function, you can upload a .csv file to the input-bucket. You can do that from the Console UI or the Cloud Shell using the OCI CLI.
   1.	Open the Cloud Shell.
   2.	Go to the functions folder:
-  3.	Copycd ~/oracle-functions-samples/samples/oci-load-file-into-adw-python
+        cd ~/oracle-functions-samples/samples/oci-load-file-into-adw-python
   4.	Use the OCI CLI to upload file1.csv to the input-bucket:
-  5.	$ oci os object put  --bucket-name input-bucket --file file1.csv
-  6.	Uploading object  [####################################]  100%
-  7.	{
-  8.	  "etag": "607fd72d-a041-484c-9ee0-93b9f5488084",
-  9.	  "last-modified": "Tue, 20 Oct 2020 18:03:50 GMT",
-  10.	  "opc-content-md5": "O8mZv0X2gLagQGT5CutWsQ=="
-  11.	}
+        $ oci os object put  --bucket-name input-bucket --file file1.csv
+        Uploading object  [####################################]  100%
+          {
+            "etag": "607fd72d-a041-484c-9ee0-93b9f5488084",
+            "last-modified": "Tue, 20 Oct 2020 18:03:50 GMT",
+            "opc-content-md5": "O8mZv0X2gLagQGT5CutWsQ=="
+          }
+  ![image](https://user-images.githubusercontent.com/42166489/108232913-43ec5a80-7169-11eb-957d-10f88462b780.png)
+
 
   To see the data in the database, follow these steps:
   1.	From the OCI console, navigate to Autonomous Data Warehouse.
@@ -180,7 +189,7 @@ Invoke Functions using Events Service
   11.	Click the green play button to execute the query.
   12.	The data from the CSV file is in the Query Result tab.
  
-
+![image](https://user-images.githubusercontent.com/42166489/108233013-5cf50b80-7169-11eb-94d4-25b0958862a3.png)
 
 
 

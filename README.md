@@ -3,16 +3,17 @@
 Invoke Functions using Events Service 
 
 ## Objectives
-  •	Create an application.
-  •	Create a Dynamic Group.
-  •	Create Object Storage Bucket.
-  •	Create an Autonomous Data Warehouse Database.
-  •	Deploy a Function.
-  •	Create an Event rule.
-  •	Test the created Function
-  Prerequisites
-  •	Your Oracle Cloud Trial Account
-  •	Completed the Prerequisites for Functions
+  1. Create an application.
+  2. Create a Dynamic Group.
+  3. Create Object Storage Bucket.
+  4. Create an Autonomous Data Warehouse Database.
+  5. Deploy a Function.
+  6. Create an Event rule.
+  7. Test the created Function
+  # Prerequisites
+  1. Your Oracle Cloud Trial Account
+  2. Completed the Prerequisites for Functions [Markdown - Link](#https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_functions_cloudshell_quickview/functions_quickview_top/functions_quickview/index.html
+)
 
 ## STEP 1: Create an application
   In this step, you will create an application and set up Fn CLI on Cloud Shell.
@@ -25,27 +26,27 @@ Invoke Functions using Events Service
   7.	Click Create.
   8.	Click on the created application to open the application details.
    
-  <p><figure> <img align="left" src="https://user-images.githubusercontent.com/42166489/108214698-7a6caa00-7156-11eb-8f48-1cc01c940a74.png"></img></figure></p>
+  <p><figure> <img  src="https://user-images.githubusercontent.com/42166489/108214698-7a6caa00-7156-11eb-8f48-1cc01c940a74.png"></img></figure></p>
   
 ## STEP 2: Create a Dynamic Group
   To use other OCI Services, your function must be part of a dynamic group. For information on creating dynamic groups, refer to the documentation.
   Before you create a dynamic group, you need to get your development compartment OCID. You will use the compartment OCID in the dynamic group matching rule.
-  #<p><figure> <img   src="https://user-images.githubusercontent.com/42166489/108214804-9d975980-7156-11eb-97e2-b5adb6365219.png"></img></figure></p>
+  <p><figure> <img   src="https://user-images.githubusercontent.com/42166489/108214804-9d975980-7156-11eb-97e2-b5adb6365219.png"></img></figure></p>
   1.	Open the navigation menu, select Identity, and then Compartments.
   2.	Find your development compartment from the list, hover over the cell in the OCID column and click Copy, to copy the compartment OCID to your clipboard.
   3.	Store the compartment OCID as you will use it soon.
   Now you're ready to create a dynamic group.
- #<p><figure><img  src="https://user-images.githubusercontent.com/42166489/108214886-b4d64700-7156-11eb-8ee5-5e489c2aa1b4.png"></img></figure></p>
+  <p><figure><img  src="https://user-images.githubusercontent.com/42166489/108214886-b4d64700-7156-11eb-8ee5-5e489c2aa1b4.png"></img></figure></p>
 
   1.	To create a dynamic group, open the navigation menu, select Identity, and then Dynamic Groups.
   2.	Click Create Dynamic Group.
   3.	For name, enter functions-dynamic-group.
   4.	For description, enter Group with all functions in a compartment.
   5.	To select the functions that belong to the dynamic group, write matching rules. Write the following matching rule that includes all functions within a compartment you      created your application in:
-#<img align="left" src=https://user-images.githubusercontent.com/42166489/108214923-bdc71880-7156-11eb-9243-7ffa68a45610.png"></img></figure></p>
+  <p><figure><img src="https://user-images.githubusercontent.com/42166489/108214923-bdc71880-7156-11eb-9243-7ffa68a45610.png"></img></figure></p>
 
-6.	CopyAll {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..example'}
-Note: Make sure you replace the above value with the compartment OCID you stored earlier.
+    CopyAll {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..example'}
+    Note: Make sure you replace the above value with the compartment OCID you stored earlier.
 
 ## STEP 3: Create Object Storage Bucket
 
@@ -178,6 +179,5 @@ Note: Make sure you replace the above value with the compartment OCID you stored
  
 
 
-https://www.oracle.com/webfolder/technetwork/tutorials/infographics/oci_functions_cloudshell_quickview/functions_quickview_top/functions_quickview/index.html
 
 

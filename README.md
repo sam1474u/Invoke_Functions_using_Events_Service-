@@ -3,7 +3,7 @@
 Invoke Functions using Events Service 
 
 
-##Objectives
+## Objectives
   •	Create an application.
   •	Create a Dynamic Group.
   •	Create Object Storage Bucket.
@@ -14,7 +14,6 @@ Invoke Functions using Events Service
   Prerequisites
   •	Your Oracle Cloud Trial Account
   •	Completed the Prerequisites for Functions
-
 ##STEP 1: Create an application
   In this step, you will create an application and set up Fn CLI on Cloud Shell.
   1.	Under Solutions and Platform, select Developer Services and click Functions.
@@ -26,24 +25,27 @@ Invoke Functions using Events Service
   7.	Click Create.
   8.	Click on the created application to open the application details.
   9.	Click the Getting Started link and follow the Begin your Cloud Shell session and Setup fn CLI on Cloud Shell sections in the Cloud Shell Setup.
+  ![image](https://user-images.githubusercontent.com/42166489/108214698-7a6caa00-7156-11eb-8f48-1cc01c940a74.png)
 
 
  
 ##STEP 2: Create a Dynamic Group
   To use other OCI Services, your function must be part of a dynamic group. For information on creating dynamic groups, refer to the documentation.
   Before you create a dynamic group, you need to get your development compartment OCID. You will use the compartment OCID in the dynamic group matching rule.
-
+  ![image](https://user-images.githubusercontent.com/42166489/108214804-9d975980-7156-11eb-97e2-b5adb6365219.png)
   1.	Open the navigation menu, select Identity, and then Compartments.
   2.	Find your development compartment from the list, hover over the cell in the OCID column and click Copy, to copy the compartment OCID to your clipboard.
   3.	Store the compartment OCID as you will use it soon.
   Now you're ready to create a dynamic group.
+  ![image](https://user-images.githubusercontent.com/42166489/108214886-b4d64700-7156-11eb-8ee5-5e489c2aa1b4.png)
 
   1.	To create a dynamic group, open the navigation menu, select Identity, and then Dynamic Groups.
   2.	Click Create Dynamic Group.
   3.	For name, enter functions-dynamic-group.
   4.	For description, enter Group with all functions in a compartment.
   5.	To select the functions that belong to the dynamic group, write matching rules. Write the following matching rule that includes all functions within a compartment you created your application in:
- 
+  ![image](https://user-images.githubusercontent.com/42166489/108214923-bdc71880-7156-11eb-9243-7ffa68a45610.png)
+
 6.	CopyAll {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..example'}
 Note: Make sure you replace the above value with the compartment OCID you stored earlier.
 
@@ -53,17 +55,22 @@ Note: Make sure you replace the above value with the compartment OCID you stored
   Let's create the input-bucket first:
 
   1.	Open the navigation menu, select Object Storage, and then select Object Storage.
+  ![image](https://user-images.githubusercontent.com/42166489/108214995-d20b1580-7156-11eb-9389-8a63daa3cff2.png)
+
   2.	Select your development compartment from the Compartment list.
   3.	Click the Create Bucket.
   4.	Name the bucket input-bucket.
   5.	Select the Standard storage tier.
   6.	Check the Emit Object Events check box.
   7.	Click Create Bucket.
+  ![image](https://user-images.githubusercontent.com/42166489/108215100-f0711100-7156-11eb-926e-50c56c671373.png)
+
  
 ##STEP 4: Create IAM policies
   Create a new policy that allows the dynamic group (functions-dynamic-group) to manage objects in the bucket.
-
-  1.	Open the navigation menu, select Identity, and then select Policies.
+  
+  1.	Open the navigation menu, select Identity, and then select Policies. 
+  ![image](https://user-images.githubusercontent.com/42166489/108215120-fa930f80-7156-11eb-8c5d-b016cfb2c733.png)
   2.	Click Create Policy.
   3.	For name, enter functions-buckets-policy.
   4.	For description, enter Policy that allows functions dynamic group to manage objects in the bucket.
@@ -71,6 +78,8 @@ Note: Make sure you replace the above value with the compartment OCID you stored
   6.	CopyAllow dynamic-group functions-dynamic-group to manage objects in compartment [compartment-name] where target.bucket.name='input-bucket'
   Note: replace the compartment-name with the name of your development compartment (the one where you created the VCN and Function Application).
   7.	Click Create.
+  ![image](https://user-images.githubusercontent.com/42166489/108215203-11396680-7157-11eb-97a5-0373767ea43e.png)
+
   
 
 ##STEP 5: Create an Autonomous Data Warehouse

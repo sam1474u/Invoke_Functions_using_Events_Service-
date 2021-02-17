@@ -38,30 +38,29 @@ Invoke Functions using Events Service
   Now you're ready to create a dynamic group.
   <p><figure><img  src="https://user-images.githubusercontent.com/42166489/108214886-b4d64700-7156-11eb-8ee5-5e489c2aa1b4.png"></img></figure></p>
 
-  1.	To create a dynamic group, open the navigation menu, select Identity, and then Dynamic Groups.
-  2.	Click Create Dynamic Group.
-  3.	For name, enter functions-dynamic-group.
-  4.	For description, enter Group with all functions in a compartment.
-  5.	To select the functions that belong to the dynamic group, write matching rules. Write the following matching rule that includes all functions within a compartment you      created your application in:
+  4.	To create a dynamic group, open the navigation menu, select Identity, and then Dynamic Groups.
+  5.	Click Create Dynamic Group.
+  6.	For name, enter functions-dynamic-group.
+  7.	For description, enter Group with all functions in a compartment.
+  8.	To select the functions that belong to the dynamic group, write matching rules. Write the following matching rule that includes all functions within a compartment you      created your application in:
   <p><figure><img src="https://user-images.githubusercontent.com/42166489/108214923-bdc71880-7156-11eb-9243-7ffa68a45610.png"></img></figure></p>
 
-    CopyAll {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..example'}
+    {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..example'}
     Note: Make sure you replace the above value with the compartment OCID you stored earlier.
 
 ## STEP 3: Create Object Storage Bucket
 
-  You need a input-bucket bucket in Object Storage. You will use the input-bucket to drop-in the CSV files. The function will process the file and import them into Autonomous  Datawarehouse.
+  You need a input-bucket bucket in Object Storage. You will use the input-bucket to drop-in the CSV files. The function will process the file and import them into Autonomous   Datawarehouse.
   Let's create the input-bucket first:
 
   1.	Open the navigation menu, select Object Storage, and then select Object Storage.
- <img align="left" width="100" height="100" src="https://user-images.githubusercontent.com/42166489/108214995-d20b1580-7156-11eb-9389-8a63daa3cff2.png">
   2.	Select your development compartment from the Compartment list.
   3.	Click the Create Bucket.
   4.	Name the bucket input-bucket.
   5.	Select the Standard storage tier.
   6.	Check the Emit Object Events check box.
   7.	Click Create Bucket.
-![image](https://user-images.githubusercontent.com/42166489/108215100-f0711100-7156-11eb-926e-50c56c671373.png)
+ <p><figure><img src= "https://user-images.githubusercontent.com/42166489/108215100-f0711100-7156-11eb-926e-50c56c671373.png"></img></figure></p>
 
  
 ## STEP 4: Create IAM policies

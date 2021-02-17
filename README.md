@@ -144,49 +144,52 @@ Invoke Functions using Events Service
   1.	From Console UI, open navigation and select Application Integration and click Events Service.
    <p><figure><img src="https://user-images.githubusercontent.com/42166489/108232201-87929480-7168-11eb-99a3-3cb7cccde652.png"></img></figure></p>
   2.	Select your development compartment from the Compartment list.
-  3.	Click Create Rule.
+  3.	Click Create Rule.     <br/><p><figure><img src="https://user-images.githubusercontent.com/42166489/108232396-bd377d80-7168-11eb-97a3-bdd69e6c60e3.png"></img></figure></p>
+
   4.	For display name, enter load_CSV_into_ADW.
   5.	For description, enter Load CSV file into ADW.
-  6.	Create three rules. You can click Another Condition to add more conditions:
-  <p><figure><img src="https://user-images.githubusercontent.com/42166489/108232396-bd377d80-7168-11eb-97a3-bdd69e6c60e3.png"></img></figure></p>
-
+  6.	Create three rules. You can click Another Condition to add more conditions
   7.	Under Actions, select Functions:
       o	For function compartment, select your development compartment.
       o	For function application, select etl-app.
       o	For function, select oci-load-file-into-adw-python.
-  8.	Click Create Rule.
-  ![image](https://user-images.githubusercontent.com/42166489/108232480-d7715b80-7168-11eb-89bc-31e93df48700.png)
+ 
+  Click Create Rule.
+  <p><figure><img src="https://user-images.githubusercontent.com/42166489/108232480-d7715b80-7168-11eb-89bc-31e93df48700.png"></img></figure></p>
+
 
   ## STEP 8: Test the function
   
   To test the function, you can upload a .csv file to the input-bucket. You can do that from the Console UI or the Cloud Shell using the OCI CLI.
   1.	Open the Cloud Shell.
-  2.	Go to the functions folder:
-        cd ~/oracle-functions-samples/samples/oci-load-file-into-adw-python
-  4.	Use the OCI CLI to upload file1.csv to the input-bucket:
-        $ oci os object put  --bucket-name input-bucket --file file1.csv
-        Uploading object  [####################################]  100%
-          {
-            "etag": "607fd72d-a041-484c-9ee0-93b9f5488084",
-            "last-modified": "Tue, 20 Oct 2020 18:03:50 GMT",
-            "opc-content-md5": "O8mZv0X2gLagQGT5CutWsQ=="
-          }
+  2.	Go to the functions folder: 
+
+          cd ~/oracle-functions-samples/samples/oci-load-file-into-adw-python
+  3.	 Use the OCI CLI to upload file1.csv to the input-bucket:
+
+          $ oci os object put  --bucket-name input-bucket --file file1.csv
+          Uploading object  [####################################]  100%
+            {
+              "etag": "607fd72d-a041-484c-9ee0-93b9f5488084",
+              "last-modified": "Tue, 20 Oct 2020 18:03:50 GMT",
+              "opc-content-md5": "O8mZv0X2gLagQGT5CutWsQ=="
+            }
   ![image](https://user-images.githubusercontent.com/42166489/108232913-43ec5a80-7169-11eb-957d-10f88462b780.png)
 
 
   To see the data in the database, follow these steps:
-  1.	From the OCI console, navigate to Autonomous Data Warehouse.
-  2.	Select your development compartment from the Compartment list.
-  3.	Select Transaction Processing from the Workload Type list.
-  4.	Click on the database name (funcdb).
-  5.	Click the Service Console.
-  6.	Click Development link from the side bar.
-  7.	Click SQL Developer Web.
-  8.	Use ADMIN and the admin password to authenticate.
-  9.	In the worksheet, enter the following query:
-  10.	select UTL_RAW.CAST_TO_VARCHAR2( DBMS_LOB.SUBSTR( JSON_DOCUMENT, 4000, 1 )) AS json from regionsnumbers
-  11.	Click the green play button to execute the query.
-  12.	The data from the CSV file is in the Query Result tab.
+  1. From the OCI console, navigate to Autonomous Data Warehouse.
+  2. Select your development compartment from the Compartment list.
+  3. Select Transaction Processing from the Workload Type list.
+  4. Click on the database name (funcdb).
+  5. Click the Service Console.
+  6. Click Development link from the side bar.
+  7. Click SQL Developer Web.
+  8. Use ADMIN and the admin password to authenticate.
+  9. In the worksheet, enter the following query:
+  10. select UTL_RAW.CAST_TO_VARCHAR2( DBMS_LOB.SUBSTR( JSON_DOCUMENT, 4000, 1 )) AS json from regionsnumbers
+  11. Click the green play button to execute the query.
+  12. The data from the CSV file is in the Query Result tab.
  
 ![image](https://user-images.githubusercontent.com/42166489/108233013-5cf50b80-7169-11eb-94d4-25b0958862a3.png)
 

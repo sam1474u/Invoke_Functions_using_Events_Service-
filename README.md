@@ -31,12 +31,12 @@ Invoke Functions using Events Service
 ## STEP 2: Create a Dynamic Group
   To use other OCI Services, your function must be part of a dynamic group. For information on creating dynamic groups, refer to the documentation.
   Before you create a dynamic group, you need to get your development compartment OCID. You will use the compartment OCID in the dynamic group matching rule.
-<img align="left" https://user-images.githubusercontent.com/42166489/108214804-9d975980-7156-11eb-97e2-b5adb6365219.png/>
+<img align="left" https://user-images.githubusercontent.com/42166489/108214804-9d975980-7156-11eb-97e2-b5adb6365219.png"></img>
   1.	Open the navigation menu, select Identity, and then Compartments.
   2.	Find your development compartment from the list, hover over the cell in the OCID column and click Copy, to copy the compartment OCID to your clipboard.
   3.	Store the compartment OCID as you will use it soon.
   Now you're ready to create a dynamic group.
- <img align="left" width="100" height="100" src="https://user-images.githubusercontent.com/42166489/108214886-b4d64700-7156-11eb-8ee5-5e489c2aa1b4.png">
+ <img align="left" width="100" height="100" src="https://user-images.githubusercontent.com/42166489/108214886-b4d64700-7156-11eb-8ee5-5e489c2aa1b4.png"></img>
 
   1.	To create a dynamic group, open the navigation menu, select Identity, and then Dynamic Groups.
   2.	Click Create Dynamic Group.

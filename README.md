@@ -142,15 +142,14 @@ Invoke Functions using Events Service
 ## STEP 7: Create an Event rule
   In this step, you will configure a Cloud Event to trigger the function when you drop the files into the input-bucket.
   1.	From Console UI, open navigation and select Application Integration and click Events Service.
-      ![image](https://user-images.githubusercontent.com/42166489/108232201-87929480-7168-11eb-99a3-3cb7cccde652.png)
+   <p><figure><img src="https://user-images.githubusercontent.com/42166489/108232201-87929480-7168-11eb-99a3-3cb7cccde652.png"></img></figure></p>
   2.	Select your development compartment from the Compartment list.
   3.	Click Create Rule.
   4.	For display name, enter load_CSV_into_ADW.
   5.	For description, enter Load CSV file into ADW.
   6.	Create three rules. You can click Another Condition to add more conditions:
-        ![image](https://user-images.githubusercontent.com/42166489/108232396-bd377d80-7168-11eb-97a3-bdd69e6c60e3.png)
+  <p><figure><img src="https://user-images.githubusercontent.com/42166489/108232396-bd377d80-7168-11eb-97a3-bdd69e6c60e3.png"></img></figure></p>
 
- 
   7.	Under Actions, select Functions:
       o	For function compartment, select your development compartment.
       o	For function application, select etl-app.

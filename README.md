@@ -14,7 +14,8 @@ Invoke Functions using Events Service
   Prerequisites
   •	Your Oracle Cloud Trial Account
   •	Completed the Prerequisites for Functions
-##STEP 1: Create an application
+  
+## STEP 1: Create an application
   In this step, you will create an application and set up Fn CLI on Cloud Shell.
   1.	Under Solutions and Platform, select Developer Services and click Functions.
   2.	Select your development compartment from the Compartment list.
@@ -25,14 +26,12 @@ Invoke Functions using Events Service
   7.	Click Create.
   8.	Click on the created application to open the application details.
   9.	Click the Getting Started link and follow the Begin your Cloud Shell session and Setup fn CLI on Cloud Shell sections in the Cloud Shell Setup.
-  <img align="left" width="100" height="100" src="https://user-images.githubusercontent.com/42166489/108214698-7a6caa00-7156-11eb-8f48-1cc01c940a74.png">
-
-
- 
-##STEP 2: Create a Dynamic Group
+  <img align="left" src="https://user-images.githubusercontent.com/42166489/108214698-7a6caa00-7156-11eb-8f48-1cc01c940a74.png">
+  
+## STEP 2: Create a Dynamic Group
   To use other OCI Services, your function must be part of a dynamic group. For information on creating dynamic groups, refer to the documentation.
   Before you create a dynamic group, you need to get your development compartment OCID. You will use the compartment OCID in the dynamic group matching rule.
-![image](https://user-images.githubusercontent.com/42166489/108214804-9d975980-7156-11eb-97e2-b5adb6365219.png)
+<img align="left" https://user-images.githubusercontent.com/42166489/108214804-9d975980-7156-11eb-97e2-b5adb6365219.png)/>
   1.	Open the navigation menu, select Identity, and then Compartments.
   2.	Find your development compartment from the list, hover over the cell in the OCID column and click Copy, to copy the compartment OCID to your clipboard.
   3.	Store the compartment OCID as you will use it soon.
@@ -49,7 +48,7 @@ Invoke Functions using Events Service
 6.	CopyAll {resource.type = 'fnfunc', resource.compartment.id = 'ocid1.compartment.oc1..example'}
 Note: Make sure you replace the above value with the compartment OCID you stored earlier.
 
-##STEP 3: Create Object Storage Bucket
+## STEP 3: Create Object Storage Bucket
 
   You need a input-bucket bucket in Object Storage. You will use the input-bucket to drop-in the CSV files. The function will process the file and import them into Autonomous  Datawarehouse.
   Let's create the input-bucket first:
@@ -65,7 +64,7 @@ Note: Make sure you replace the above value with the compartment OCID you stored
 ![image](https://user-images.githubusercontent.com/42166489/108215100-f0711100-7156-11eb-926e-50c56c671373.png)
 
  
-##STEP 4: Create IAM policies
+## STEP 4: Create IAM policies
   Create a new policy that allows the dynamic group (functions-dynamic-group) to manage objects in the bucket.
  
   1.	Open the navigation menu, select Identity, and then select Policies. 

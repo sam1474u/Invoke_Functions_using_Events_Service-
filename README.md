@@ -26,12 +26,12 @@ Invoke Functions using Events Service
   7.	Click Create.
   8.	Click on the created application to open the application details.
   9.	Click the Getting Started link and follow the Begin your Cloud Shell session and Setup fn CLI on Cloud Shell sections in the Cloud Shell Setup.
-  <img align="left" src="https://user-images.githubusercontent.com/42166489/108214698-7a6caa00-7156-11eb-8f48-1cc01c940a74.png">
+  <img align="left" src="https://user-images.githubusercontent.com/42166489/108214698-7a6caa00-7156-11eb-8f48-1cc01c940a74.png"/>
   
 ## STEP 2: Create a Dynamic Group
   To use other OCI Services, your function must be part of a dynamic group. For information on creating dynamic groups, refer to the documentation.
   Before you create a dynamic group, you need to get your development compartment OCID. You will use the compartment OCID in the dynamic group matching rule.
-<img align="left" https://user-images.githubusercontent.com/42166489/108214804-9d975980-7156-11eb-97e2-b5adb6365219.png)/>
+<img align="left" https://user-images.githubusercontent.com/42166489/108214804-9d975980-7156-11eb-97e2-b5adb6365219.png/>
   1.	Open the navigation menu, select Identity, and then Compartments.
   2.	Find your development compartment from the list, hover over the cell in the OCID column and click Copy, to copy the compartment OCID to your clipboard.
   3.	Store the compartment OCID as you will use it soon.

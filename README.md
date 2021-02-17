@@ -71,16 +71,19 @@ Invoke Functions using Events Service
   3.	For name, enter functions-buckets-policy.
   4.	For description, enter Policy that allows functions dynamic group to manage objects in the bucket.
   5.	Click the Customize (Advanced) link and paste the policy statements into the Policy Builder field:
-  6.	CopyAllow dynamic-group functions-dynamic-group to manage objects in compartment [compartment-name] where target.bucket.name='input-bucket'
-  Note: replace the compartment-name with the name of your development compartment (the one where you created the VCN and Function Application).
-  7.	Click Create.
-<p><figure><img src= "https://user-images.githubusercontent.com/42166489/108215203-11396680-7157-11eb-97a5-0373767ea43e.png"></img></figure></p>
+  
+       Allow dynamic-group functions-dynamic-group to manage objects in compartment [compartment-name] where target.bucket.name='input-bucket'
+       Note: replace the compartment-name with the name of your development compartment (the one where you created the VCN and Function Application).
+       
+  6.	Click Create.
+ <p><figure><img src= "https://user-images.githubusercontent.com/42166489/108215203-11396680-7157-11eb-97a5-0373767ea43e.png"></img></figure></p>
 
 
   
 
-##STEP 5: Create an Autonomous Data Warehouse
+## STEP 5: Create an Autonomous Data Warehouse
   The function accesses the Autonomous Database using SODA (Simple Oracle Document Access) for simplicity. You can use the other type of access by modifying the function.
+ <p><figure><img src= "https://user-images.githubusercontent.com/42166489/108221668-0df5a900-715e-11eb-86c6-70ab3afbd524.png></img></figure></p>
 
   1.	Open the navigation menu, select Autonomous Data Warehouse.
   2.	Click Create Autonomous Database.
@@ -93,6 +96,7 @@ Invoke Functions using Events Service
   9.	Click Create Autonomous Database.
 
   Wait for OCI to provision the Autonomous Database, and then click the Service Console button.
+ <p><figure><img src= "https://user-images.githubusercontent.com/42166489/108221718-1bab2e80-715e-11eb-9e70-14b3d43028e1.png></img></figure></p>
 
 
   1.	Click Development from the sidebar. 
